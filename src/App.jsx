@@ -1,11 +1,7 @@
-import "./App.css";
+import Testimonials from "./pages/Testimonials";
 
 function App() {
-  return (
-    <>
-      <p>Hello World!</p>
-    </>
-  );
+  return <Testimonials />;
 }
 
 export default App;
