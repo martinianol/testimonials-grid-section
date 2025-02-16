@@ -11,6 +11,7 @@ const PageWrapper = styled.div`
   flex-direction: column;
   min-height: 100vh; /* ✅ Ensures page takes full height */
   place-items: center;
+  justify-content: center;
   background-color: #ecf2f8;
-  color: #48556A;
+  color: #48556a;
 `;

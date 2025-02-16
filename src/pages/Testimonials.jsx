@@ -5,18 +5,28 @@ import data from "../data/data.json";
 
 const Testimonials = () => {
   const testimonials = data.items;
-  console.log(testimonials);
   return (
     <PageContainer>
       <Cards>
         {/*  {testimonials.map((testimonial, index) => <Card key={testimonial.id} spanColumn={index===0 ? 2 : 0} spanRow={}{...testimonial}/>
 
         )} */}
-        <Card spanColumn={2} {...testimonials[0]} />
-        <Card {...testimonials[1]} />
-        <Card spanRow={2} {...testimonials[2]} />
-        <Card {...testimonials[3]} />
-        <Card spanColumn={2} {...testimonials[4]} />
+        <Card
+          {...testimonials[0]}
+          spanColumn={2}
+          cardStyle="magenta"
+          order={1}
+        />
+        <Card {...testimonials[1]} cardStyle="grey" order={2} />
+        <Card {...testimonials[2]} contentGap={24} order={3} />
+        <Card
+          {...testimonials[3]}
+          contentGap={24}
+          cardStyle="dark"
+          order={4}
+          spanColumn={2}
+        />
+        <Card {...testimonials[4]} contentGap={40} order={2} spanRow={2} />
       </Cards>
     </PageContainer>
   );
