@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "../components/Card";
+import Card from "../components/Card/Card";
 import PageContainer from "../components/PageContainer";
 import data from "../data/data.json";
 

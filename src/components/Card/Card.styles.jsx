@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import User from "./User";
-import PropTypes from "prop-types";
-import images from "../assets";
 
-const CARD_STYLES = {
+export const CARD_STYLES = {
   magenta: {
     background: "#733FC8",
     title: "#FFF",
@@ -21,7 +18,7 @@ const CARD_STYLES = {
   grey: { background: "#48556A", title: "#FFF", testimonial: "#FFF" },
 };
 
-const CARD_RULES = {
+export const CARD_RULES = {
   card1: { gap: "16px", paddingBottom: "32px" },
   card2: { gap: "16px", paddingBottom: "32px" },
   card3: { gap: "24px", paddingBottom: "26px" },
@@ -29,31 +26,7 @@ const CARD_RULES = {
   card5: { gap: "24px", paddingBottom: "26px" },
 };
 
-const Card = ({ gridArea, title, user, testimonial, cardStyle, showQuote }) => {
-  return (
-    <CardWrapper $cardStyle={cardStyle} $gridArea={gridArea}>
-      {showQuote && <QuoteImg src={images.quote} />}
-      <User user={user} borderColor={CARD_STYLES[cardStyle]?.borderColor} />
-      <Info $cardStyle={cardStyle} $gridArea={gridArea}>
-        <Title>{title}</Title>
-        <Testimonial $cardStyle={cardStyle}>{testimonial}</Testimonial>
-      </Info>
-    </CardWrapper>
-  );
-};
-
-Card.propTypes = {
-  title: PropTypes.string,
-  user: PropTypes.object,
-  testimonial: PropTypes.string,
-  cardStyle: PropTypes.string,
-  contentGap: PropTypes.number,
-  gridArea: PropTypes.string,
-  showQuote: PropTypes.bool,
-};
-export default Card;
-
-const CardWrapper = styled.section`
+export const CardWrapper = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -71,7 +44,7 @@ const CardWrapper = styled.section`
   }
 `;
 
-const Info = styled.div`
+export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.gap || "18px"};
@@ -82,12 +55,12 @@ const Info = styled.div`
   }
 `;
 
-const Title = styled.p`
+export const Title = styled.p`
   font-size: 20px;
   line-height: 24px;
 `;
 
-const Testimonial = styled.p`
+export const Testimonial = styled.p`
   opacity: 0.7;
   font-size: 13px;
   line-height: 18px;
@@ -95,7 +68,7 @@ const Testimonial = styled.p`
     CARD_STYLES[$cardStyle]?.paddingRight || "unset"};
 `;
 
-const QuoteImg = styled.img`
+export const QuoteImg = styled.img`
   position: absolute;
   top: 0px;
   right: 24px;
