@@ -36,6 +36,7 @@ export const CardWrapper = styled.section`
   border-radius: 8px;
   padding: 26px 32px 32px;
   color: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.title || "#48556A"};
+  box-shadow: 40px 60px 50px -47px rgba(72, 85, 106, 0.24);
 
   @media (min-width: 1024px) {
     grid-area: ${({ $gridArea }) => $gridArea || "auto"};
