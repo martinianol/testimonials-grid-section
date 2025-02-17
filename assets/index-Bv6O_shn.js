@@ -82,7 +82,7 @@ Error generating stack: `+e.message+`
   border-radius: 8px;
   padding: 26px 32px 32px;
   color: ${({$cardStyle:i})=>{var s;return((s=$u[i])==null?void 0:s.title)||"#48556A"}};
-  box-shadow: 40px 60px 50px -47px rgba(72, 85, 106, 0.24);
+  box-shadow: 78px 46px 109px 0px rgba(0, 0, 0, 0.4);
 
   @media (min-width: 1024px) {
     grid-area: ${({$gridArea:i})=>i||"auto"};
