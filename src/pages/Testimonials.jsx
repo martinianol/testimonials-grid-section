@@ -8,12 +8,13 @@ const Testimonials = () => {
   return (
     <PageContainer>
       <Cards>
-        {testimonials.map((testimonial) => {
+        {testimonials.map((testimonial, index) => {
           return (
             <Card
               key={testimonial.id}
               {...testimonial}
               gridArea={`card${testimonial.cardNumber}`}
+              showQuote={index === 0}
             />
           );
         })}

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import User from "./User";
 import PropTypes from "prop-types";
+import images from "../assets";
 
 const CARD_STYLES = {
   magenta: {
@@ -20,23 +21,18 @@ const CARD_STYLES = {
   grey: { background: "#48556A", title: "#FFF", testimonial: "#FFF" },
 };
 
-const GAP_RULES = {
-  card1: "16px",
-  card2: "16px",
-  card3: "40px",
-  card4: "24px",
-  card5: "24px",
+const CARD_RULES = {
+  card1: { gap: "16px", paddingBottom: "32px" },
+  card2: { gap: "16px", paddingBottom: "32px" },
+  card3: { gap: "24px", paddingBottom: "26px" },
+  card4: { gap: "24px", paddingBottom: "26px" },
+  card5: { gap: "24px", paddingBottom: "26px" },
 };
 
-const Card = ({
-  gridArea,
-  title,
-  user,
-  testimonial,
-  cardStyle,
-}) => {
+const Card = ({ gridArea, title, user, testimonial, cardStyle, showQuote }) => {
   return (
     <CardWrapper $cardStyle={cardStyle} $gridArea={gridArea}>
+      {showQuote && <QuoteImg src={images.quote} />}
       <User user={user} borderColor={CARD_STYLES[cardStyle]?.borderColor} />
       <Info $cardStyle={cardStyle} $gridArea={gridArea}>
         <Title>{title}</Title>
@@ -47,19 +43,18 @@ const Card = ({
 };
 
 Card.propTypes = {
-  spanColumn: PropTypes.string,
-  spanRow: PropTypes.string,
-  order: PropTypes.number,
   title: PropTypes.string,
   user: PropTypes.object,
   testimonial: PropTypes.string,
   cardStyle: PropTypes.string,
   contentGap: PropTypes.number,
   gridArea: PropTypes.string,
+  showQuote: PropTypes.bool,
 };
 export default Card;
 
 const CardWrapper = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -71,16 +66,19 @@ const CardWrapper = styled.section`
 
   @media (min-width: 1024px) {
     grid-area: ${({ $gridArea }) => $gridArea || "auto"};
+    padding-bottom: ${({ $gridArea }) =>
+      CARD_RULES[$gridArea].paddingBottom || "32px"};
   }
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.gap || "16px"};
+  gap: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.gap || "18px"};
+  z-index: 10;
 
   @media (min-width: 1024px) {
-    gap: ${({ $gridArea }) => GAP_RULES[$gridArea] || "16px"};
+    gap: ${({ $gridArea }) => CARD_RULES[$gridArea].gap || "16px"};
   }
 `;
 
@@ -95,4 +93,15 @@ const Testimonial = styled.p`
   line-height: 18px;
   padding-right: ${({ $cardStyle }) =>
     CARD_STYLES[$cardStyle]?.paddingRight || "unset"};
+`;
+
+const QuoteImg = styled.img`
+  position: absolute;
+  top: 0px;
+  right: 24px;
+  width: 104px;
+  height: 102px;
+  @media (min-width: 1024px) {
+    right: 80px;
+  }
 `;

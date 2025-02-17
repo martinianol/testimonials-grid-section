@@ -5,8 +5,8 @@ import images from "../assets";
 const User = ({ user, borderColor }) => {
   const { username, name, verified } = user;
   const verfiedText = verified
-    ? "Verified Graduated"
-    : "Non Verified Graduated";
+    ? "Verified Graduate"
+    : "Non Verified Graduate";
 
   return (
     <UserWrapper>
@@ -46,7 +46,7 @@ const NameWrapper = styled.div`
 
 const Name = styled.p`
   font-size: 13px;
-  line-height: 14px;
+  line-height: 13px;
 `;
 
 const Verified = styled.p`
