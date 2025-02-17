@@ -44,9 +44,10 @@ const NameWrapper = styled.div`
   gap: 4px;
 `;
 
-const Name = styled.p`
+const Name = styled.h2`
   font-size: 13px;
   line-height: 13px;
+  font-weight: 400;
 `;
 
 const Verified = styled.p`

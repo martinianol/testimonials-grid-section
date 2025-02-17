@@ -7,6 +7,7 @@ const Testimonials = () => {
   const testimonials = data.items;
   return (
     <PageContainer>
+      <Title>Testimonial Grid Layout</Title>
       <Cards>
         {testimonials.map((testimonial, index) => {
           return (
@@ -37,4 +38,8 @@ const Cards = styled.article`
       "card1 card1 card2 card3"
       "card4 card5 card5 card3"; /* Define named areas */
   }
+`;
+
+const Title = styled.h1`
+  visibility: hidden;
 `;

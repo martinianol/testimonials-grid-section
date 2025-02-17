@@ -13,7 +13,7 @@ import {
 const Card = ({ gridArea, title, user, testimonial, cardStyle, showQuote }) => {
   return (
     <CardWrapper $cardStyle={cardStyle} $gridArea={gridArea}>
-      {showQuote && <QuoteImg src={images.quote} />}
+      {showQuote && <QuoteImg src={images.quote} alt="quote image styling"/>}
       <User user={user} borderColor={CARD_STYLES[cardStyle]?.borderColor} />
       <Info $cardStyle={cardStyle} $gridArea={gridArea}>
         <Title>{title}</Title>
