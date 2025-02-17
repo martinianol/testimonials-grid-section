@@ -17,27 +17,21 @@ const CARD_STYLES = {
   grey: { background: "#48556A", title: "#FFF", testimonial: "#FFF" },
 };
 
-const Card = ({
-  spanColumn,
-  spanRow,
-  order,
-  title,
-  user,
-  testimonial,
-  cardStyle,
-  contentGap = 16,
-}) => {
+const GAP_RULES = {
+  card1: "16px",
+  card2: "16px",
+  card3: "40px",
+  card4: "24px",
+  card5: "24px",
+};
+
+const Card = ({ gridArea, title, user, testimonial, cardStyle }) => {
   return (
-    <CardWrapper
-      $spanColumn={spanColumn}
-      $spanRow={spanRow}
-      $order={order}
-      $cardStyle={cardStyle}
-    >
+    <CardWrapper $cardStyle={cardStyle} $gridArea={gridArea}>
       <User user={user} />
-      <Info $contentGap={contentGap} $cardStyle={cardStyle}>
-        <Title $cardStyle={cardStyle}>{title}</Title>
-        <Testimonial $cardStyle={cardStyle}>{testimonial}</Testimonial>
+      <Info $cardStyle={cardStyle} $gridArea={gridArea}>
+        <Title>{title}</Title>
+        <Testimonial>{testimonial}</Testimonial>
       </Info>
     </CardWrapper>
   );
@@ -52,21 +46,22 @@ Card.propTypes = {
   testimonial: PropTypes.string,
   cardStyle: PropTypes.string,
   contentGap: PropTypes.number,
+  gridArea: PropTypes.string,
 };
 export default Card;
 
 const CardWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   background-color: ${({ $cardStyle }) =>
     CARD_STYLES[$cardStyle]?.background || "#FFF"};
   border-radius: 8px;
   padding: 26px 32px 32px;
+  color: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.title || "#48556A"};
 
   @media (min-width: 1024px) {
-    ${({ $spanColumn, $spanRow, $order }) => `
-      grid-column: ${$spanColumn > 0 ? `span ${$spanColumn}` : "auto"};
-      grid-row: ${$spanRow > 0 ? `span ${$spanRow}` : "auto"};
-      order:  ${$order || 0};
-    `}
+    grid-area: ${({ $gridArea }) => $gridArea || "auto"};
   }
 `;
 
@@ -76,19 +71,16 @@ const Info = styled.div`
   gap: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.gap || "16px"};
 
   @media (min-width: 1024px) {
-    gap: ${({ $contentGap }) => $contentGap + "px"};
+    gap: ${({ $gridArea }) => GAP_RULES[$gridArea] || "16px"};
   }
 `;
 
 const Title = styled.p`
   font-size: 20px;
   line-height: 24px;
-  color: ${({ $cardStyle }) => CARD_STYLES[$cardStyle]?.title || "#48556A"};
 `;
 
 const Testimonial = styled.p`
-  color: ${({ $cardStyle }) =>
-    CARD_STYLES[$cardStyle]?.testimonial || "#48556A"};
   opacity: 0.7;
   font-size: 13px;
   line-height: 18px;

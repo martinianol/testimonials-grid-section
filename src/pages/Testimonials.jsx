@@ -8,25 +8,15 @@ const Testimonials = () => {
   return (
     <PageContainer>
       <Cards>
-        {/*  {testimonials.map((testimonial, index) => <Card key={testimonial.id} spanColumn={index===0 ? 2 : 0} spanRow={}{...testimonial}/>
-
-        )} */}
-        <Card
-          {...testimonials[0]}
-          spanColumn={2}
-          cardStyle="magenta"
-          order={1}
-        />
-        <Card {...testimonials[1]} cardStyle="grey" order={2} />
-        <Card {...testimonials[2]} contentGap={24} order={3} />
-        <Card
-          {...testimonials[3]}
-          contentGap={24}
-          cardStyle="dark"
-          order={4}
-          spanColumn={2}
-        />
-        <Card {...testimonials[4]} contentGap={40} order={2} spanRow={2} />
+        {testimonials.map((testimonial) => {
+          return (
+            <Card
+              key={testimonial.id}
+              {...testimonial}
+              gridArea={`card${testimonial.cardNumber}`}
+            />
+          );
+        })}
       </Cards>
     </PageContainer>
   );
@@ -42,5 +32,8 @@ const Cards = styled.article`
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 255px); /* Max width 255px */
+    grid-template-areas:
+      "card1 card1 card2 card3"
+      "card4 card5 card5 card3"; /* Define named areas */
   }
 `;
