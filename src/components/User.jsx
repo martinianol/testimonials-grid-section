@@ -2,16 +2,15 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import images from "../assets";
 
-const User = ({ user }) => {
+const User = ({ user, borderColor }) => {
   const { username, name, verified } = user;
-
   const verfiedText = verified
     ? "Verified Graduated"
     : "Non Verified Graduated";
 
   return (
     <UserWrapper>
-      <AvatarWrapper>
+      <AvatarWrapper $borderColor={borderColor}>
         <img src={images[username]} alt="user avatar" />
       </AvatarWrapper>
       <NameWrapper>
@@ -28,6 +27,7 @@ User.propTypes = {
     name: PropTypes.string.isRequired,
     verified: PropTypes.bool.isRequired,
   },
+  borderColor:  PropTypes.string
 };
 
 export default User;
@@ -35,6 +35,7 @@ export default User;
 const UserWrapper = styled.div`
   display: flex;
   gap: 17px;
+  align-items: center;
 `;
 
 const NameWrapper = styled.div`
@@ -57,11 +58,10 @@ const Verified = styled.p`
 
 const AvatarWrapper = styled.div`
   display: flex;
-  
-
   img {
     width: 28px;
     height: 28px;
+    border: ${({ $borderColor }) => `2px solid ${$borderColor || "transparent"}`};
     border-radius: 50%;
     object-fit: contain;
   }

@@ -8,11 +8,14 @@ const CARD_STYLES = {
     title: "#FFF",
     testimonial: "#CFCFCF",
     gap: "40px",
+    paddingRight: "16px",
+    borderColor: "#A775F1",
   },
   dark: {
     background: "#19202D",
     title: "#ECF2F8",
     testimonial: "#FFFFFF",
+    borderColor: "#733FC8",
   },
   grey: { background: "#48556A", title: "#FFF", testimonial: "#FFF" },
 };
@@ -25,13 +28,19 @@ const GAP_RULES = {
   card5: "24px",
 };
 
-const Card = ({ gridArea, title, user, testimonial, cardStyle }) => {
+const Card = ({
+  gridArea,
+  title,
+  user,
+  testimonial,
+  cardStyle,
+}) => {
   return (
     <CardWrapper $cardStyle={cardStyle} $gridArea={gridArea}>
-      <User user={user} />
+      <User user={user} borderColor={CARD_STYLES[cardStyle]?.borderColor} />
       <Info $cardStyle={cardStyle} $gridArea={gridArea}>
         <Title>{title}</Title>
-        <Testimonial>{testimonial}</Testimonial>
+        <Testimonial $cardStyle={cardStyle}>{testimonial}</Testimonial>
       </Info>
     </CardWrapper>
   );
@@ -84,4 +93,6 @@ const Testimonial = styled.p`
   opacity: 0.7;
   font-size: 13px;
   line-height: 18px;
+  padding-right: ${({ $cardStyle }) =>
+    CARD_STYLES[$cardStyle]?.paddingRight || "unset"};
 `;
